@@ -46,13 +46,9 @@
           </div>
         </div>
 
-        <div class="photo-slot">
-          <picture>
-            <source type="image/webp" srcset="img/portada-700.webp 700w, img/portada.webp 1200w" sizes="(max-width: 900px) 100vw, 520px">
-            <img src="img/portada.jpg" srcset="img/portada-700.jpg 700w, img/portada.jpg 1200w" sizes="(max-width: 900px) 100vw, 520px"
-                 alt="Tabique de ladrillo cerámico levantado por Tabian con miras y cuerda de nivel en obra"
-                 width="1200" height="1500" fetchpriority="high">
-          </picture>
+        <!-- Pared de ladrillo dibujada: se construye al cargar y se desliza al hacer scroll -->
+        <div class="wall-wrap" aria-hidden="true">
+          <div class="wall" id="wall"></div>
         </div>
       </div>
     </section>
@@ -69,6 +65,43 @@
     const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    // ---------- Pared de ladrillo ----------
+    const wall = document.getElementById('wall');
+    const ROWS = 8, BRICKS = 5;
+    const tones = ['#a84122', '#b04a29', '#b9552f', '#c4673f', '#d1815e'];
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    for (let r = 0; r < ROWS; r++) {
+      const row = document.createElement('div');
+      row.className = 'wall-row';
+      const offset = r % 2 === 1;                 // hiladas a matajuntas
+      const sizes = offset ? [1, ...Array(BRICKS - 1).fill(2), 1] : Array(BRICKS).fill(2);
+      sizes.forEach((size, c) => {
+        const b = document.createElement('span');
+        b.className = 'brick';
+        b.style.flexGrow = size;
+        b.style.background = tones[Math.floor(Math.random() * tones.length)];
+        b.style.setProperty('--d', (r * 0.28 + c * 0.09).toFixed(2) + 's');
+        row.appendChild(b);
+      });
+      wall.appendChild(row);
+    }
+    // Se levanta de abajo arriba, hilada a hilada
+    requestAnimationFrame(() => setTimeout(() => wall.classList.add('built'), 150));
+
+    // Al bajar, la pared se desliza hacia la derecha
+    if (!reduce) {
+      let ticking = false;
+      const slide = () => {
+        const x = Math.min(window.scrollY, 700) * 0.55;
+        wall.parentElement.style.transform = `translateX(${x}px)`;
+        ticking = false;
+      };
+      window.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(slide); ticking = true; }
+      }, { passive: true });
+    }
   </script>
 </body>
 </html>
