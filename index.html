@@ -66,7 +66,56 @@
     </section>
 
     <!-- Próximas secciones: servicios, por qué Tabian, obras, cómo trabajamos, contacto -->
-    <div id="servicios"></div>
+
+    <!-- ===================== SERVICIOS: TIPOS DE LADRILLO ===================== -->
+    <section class="services" id="servicios">
+      <div class="container">
+        <header class="section-head on-scroll">
+          <p class="section-kicker">Sistemas</p>
+          <h2>Trabajamos todo tipo de ladrillo</h2>
+          <p class="section-sub">Ejecutamos cada sistema según proyecto, con el mismo equipo de principio a fin.</p>
+        </header>
+
+        <div class="brick-grid">
+          <article class="brick-card on-scroll">
+            <div class="brick-art"><img src="img/ladrillos/hueco.svg" alt="Dibujo de ladrillo hueco convencional" loading="lazy"></div>
+            <div class="brick-body">
+              <span class="brick-num">01</span>
+              <h3>Ladrillo hueco convencional</h3>
+              <p>Tabiquería interior y distribución de viviendas, trasdosados y divisiones. El sistema más versátil, con buena planeidad para guarnecer o alicatar.</p>
+              <ul class="tags"><li>Tabiques</li><li>Trasdosados</li><li>Distribuciones</li></ul>
+            </div>
+          </article>
+          <article class="brick-card on-scroll">
+            <div class="brick-art"><img src="img/ladrillos/panal.svg" alt="Dibujo de ladrillo de panal" loading="lazy"></div>
+            <div class="brick-body">
+              <span class="brick-num">02</span>
+              <h3>Ladrillo de panal</h3>
+              <p>Para muros que necesitan más resistencia y aislamiento acústico: medianeras, separación entre viviendas y cerramientos.</p>
+              <ul class="tags"><li>Medianeras</li><li>Separación entre viviendas</li><li>Cerramientos</li></ul>
+            </div>
+          </article>
+          <article class="brick-card on-scroll">
+            <div class="brick-art"><img src="img/ladrillos/termo.svg" alt="Dibujo de bloque termoarcilla" loading="lazy"></div>
+            <div class="brick-body">
+              <span class="brick-num">03</span>
+              <h3>Bloque termoarcilla</h3>
+              <p>Bloque cerámico de gran formato para muros de carga y fachadas de una sola hoja, con buen aislamiento térmico y acústico.</p>
+              <ul class="tags"><li>Muros de carga</li><li>Fachadas</li><li>Vivienda unifamiliar</li></ul>
+            </div>
+          </article>
+          <article class="brick-card on-scroll">
+            <div class="brick-art"><img src="img/ladrillos/hormigon.svg" alt="Dibujo de bloque de hormigón" loading="lazy"></div>
+            <div class="brick-body">
+              <span class="brick-num">04</span>
+              <h3>Bloque de hormigón</h3>
+              <p>Muros resistentes para naves, garajes, vallados, muros de contención y vasos de piscina.</p>
+              <ul class="tags"><li>Naves</li><li>Vallados</li><li>Piscinas</li><li>Muros</li></ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
     <div id="obras"></div>
     <div id="contacto"></div>
   </main>
@@ -98,6 +147,15 @@
       requestAnimationFrame(step);
     };
     setTimeout(() => counters.forEach(runCount), 900);
+
+    // Aparición al hacer scroll
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.on-scroll').forEach((el, i) => {
+      el.style.transitionDelay = (el.classList.contains('brick-card') ? (i % 2) * 0.12 : 0) + 's';
+      io.observe(el);
+    });
 
     // Foto de portada con efecto parallax suave
     const bg = document.querySelector('.hero-bg img');
