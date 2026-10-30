@@ -6,7 +6,7 @@
   <title>Tabian · Tabiquería de ladrillo para promotoras y constructoras</title>
   <meta name="description" content="Subcontrata de tabiquería de ladrillo y cerramientos en Alicante, Murcia y Valencia. Equipo propio, más de 10 años en obra y capacidad disponible para nuevos proyectos.">
   <link rel="canonical" href="https://tabian.es/">
-  <meta name="theme-color" content="#f8f3ee">
+  <meta name="theme-color" content="#111111">
   <link rel="icon" type="image/png" href="img/favicon.png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
@@ -17,7 +17,8 @@
   <header class="header" id="header">
     <div class="container header-inner">
       <a href="#" class="logo" aria-label="Tabian, inicio">
-        <img src="img/logo-tabian.webp" alt="Tabian · Tabiquería y obra" width="600" height="379">
+        <img class="logo-light" src="img/logo-blanco.webp" alt="Tabian · Tabiquería y obra" width="640" height="404">
+        <img class="logo-dark" src="img/logo-negro.webp" alt="" width="640" height="404" aria-hidden="true">
       </a>
 
       <nav class="nav" aria-label="Principal">
@@ -34,21 +35,33 @@
   <main>
     <!-- ===================== PORTADA ===================== -->
     <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">Subcontrata de tabiquería · Alicante · Murcia · Valencia</p>
-          <h1>Tabiquería <span class="accent">de ladrillo</span> para promotoras y constructoras</h1>
-          <p class="hero-lead">Tabiquería interior y cerramientos con equipo propio. Más de 10 años en obra y capacidad disponible para nuevos proyectos.</p>
-          <div class="hero-actions">
-            <a href="#contacto" class="btn btn-primary">Pedir presupuesto</a>
-            <a href="https://wa.me/34638666270?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20el%20dossier%20de%20Tabian."
-               class="btn btn-outline" target="_blank" rel="noopener">Solicitar dossier</a>
-          </div>
-        </div>
+      <div class="hero-bg" aria-hidden="true">
+        <picture>
+          <source type="image/webp" srcset="img/portada-700.webp 700w, img/portada.webp 1200w" sizes="100vw">
+          <img src="img/portada.jpg" srcset="img/portada-700.jpg 700w, img/portada.jpg 1200w" sizes="100vw" alt="" fetchpriority="high">
+        </picture>
+      </div>
 
-        <!-- Pared de ladrillo dibujada: se construye al cargar y se desliza al hacer scroll -->
-        <div class="wall-wrap" aria-hidden="true">
-          <div class="wall" id="wall"></div>
+      <div class="container hero-content">
+        <p class="eyebrow reveal">
+          <span class="eyebrow-main">Subcontrata de tabiquería</span>
+          <span class="eyebrow-zone">Alicante · Murcia · Valencia</span>
+        </p>
+        <h1 class="reveal">Tabiquería <span class="accent">de ladrillo</span> para promotoras y constructoras</h1>
+        <p class="hero-lead reveal">Tabiquería interior y cerramientos con equipo propio. Más de 10 años en obra y capacidad disponible para nuevos proyectos.</p>
+        <div class="hero-actions reveal">
+          <a href="#contacto" class="btn btn-primary">Pedir presupuesto</a>
+          <a href="https://wa.me/34638666270?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20el%20dossier%20de%20Tabian."
+             class="btn btn-ghost" target="_blank" rel="noopener">Solicitar dossier</a>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="container stats-grid">
+          <div class="stat reveal"><strong><span class="count" data-to="10">0</span>+</strong><span>años de oficio</span></div>
+          <div class="stat reveal"><strong><span class="count" data-to="3">0</span></strong><span>provincias</span></div>
+          <div class="stat reveal"><strong>100%</strong><span>equipo propio</span></div>
+          <div class="stat reveal"><strong>m²</strong><span>presupuesto cerrado</span></div>
         </div>
       </div>
     </section>
@@ -66,42 +79,33 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
-    // ---------- Pared de ladrillo ----------
-    const wall = document.getElementById('wall');
-    const ROWS = 8, BRICKS = 5;
-    const tones = ['#a84122', '#b04a29', '#b9552f', '#c4673f', '#d1815e'];
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    for (let r = 0; r < ROWS; r++) {
-      const row = document.createElement('div');
-      row.className = 'wall-row';
-      const offset = r % 2 === 1;                 // hiladas a matajuntas
-      const sizes = offset ? [1, ...Array(BRICKS - 1).fill(2), 1] : Array(BRICKS).fill(2);
-      sizes.forEach((size, c) => {
-        const b = document.createElement('span');
-        b.className = 'brick';
-        b.style.flexGrow = size;
-        b.style.background = tones[Math.floor(Math.random() * tones.length)];
-        b.style.setProperty('--d', (r * 0.28 + c * 0.09).toFixed(2) + 's');
-        row.appendChild(b);
-      });
-      wall.appendChild(row);
-    }
-    // Se levanta de abajo arriba, hilada a hilada
-    requestAnimationFrame(() => setTimeout(() => wall.classList.add('built'), 150));
+    // Entrada escalonada de los textos de portada
+    document.querySelectorAll('.hero .reveal').forEach((el, i) => {
+      el.style.transitionDelay = (0.15 + i * 0.12) + 's';
+    });
+    requestAnimationFrame(() => document.body.classList.add('loaded'));
 
-    // Al bajar, la pared se desliza hacia la derecha
-    if (!reduce) {
-      let ticking = false;
-      const slide = () => {
-        const x = Math.min(window.scrollY, 700) * 0.55;
-        wall.parentElement.style.transform = `translateX(${x}px)`;
-        ticking = false;
+    // Contadores (10+ años, 3 provincias)
+    const counters = document.querySelectorAll('.count');
+    const runCount = el => {
+      const to = +el.dataset.to, dur = reduce ? 0 : 1400, t0 = performance.now();
+      const step = t => {
+        const p = Math.min(1, (t - t0) / (dur || 1));
+        el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step);
       };
-      window.addEventListener('scroll', () => {
-        if (!ticking) { requestAnimationFrame(slide); ticking = true; }
-      }, { passive: true });
-    }
+      requestAnimationFrame(step);
+    };
+    setTimeout(() => counters.forEach(runCount), 900);
+
+    // Foto de portada con efecto parallax suave
+    const bg = document.querySelector('.hero-bg img');
+    if (!reduce) window.addEventListener('scroll', () => {
+      bg.style.transform = `translateY(${window.scrollY * 0.25}px) scale(1.08)`;
+    }, { passive: true });
+
   </script>
 </body>
 </html>
