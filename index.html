@@ -66,18 +66,28 @@
 
     <!-- Próximas secciones: servicios, por qué Tabian, obras, cómo trabajamos, contacto -->
 
+    <!-- ===================== FRANJA EN MOVIMIENTO ===================== -->
+    <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee">
+      <div class="marquee-track" id="marquee">
+        <div class="marquee-group"><span>Tabiquería</span><i aria-hidden="true"></i><span>Cerramientos</span><i aria-hidden="true"></i><span>Termoarcilla</span><i aria-hidden="true"></i><span>Bloque de hormigón</span><i aria-hidden="true"></i><span>Ladrillo de panal</span><i aria-hidden="true"></i><span>Alicante</span><i aria-hidden="true"></i><span>Murcia</span><i aria-hidden="true"></i><span>Valencia</span><i aria-hidden="true"></i></div>
+        <div class="marquee-group"><span>Tabiquería</span><i aria-hidden="true"></i><span>Cerramientos</span><i aria-hidden="true"></i><span>Termoarcilla</span><i aria-hidden="true"></i><span>Bloque de hormigón</span><i aria-hidden="true"></i><span>Ladrillo de panal</span><i aria-hidden="true"></i><span>Alicante</span><i aria-hidden="true"></i><span>Murcia</span><i aria-hidden="true"></i><span>Valencia</span><i aria-hidden="true"></i></div>
+      </div>
+    </div>
+    </div>
+
     <!-- ===================== SERVICIOS: TIPOS DE LADRILLO ===================== -->
     <section class="services" id="servicios">
       <div class="container">
         <header class="section-head on-scroll">
           <p class="section-kicker">Sistemas</p>
-          <h2>Trabajamos todo tipo de ladrillo</h2>
+          <h2 class="build">Trabajamos todo tipo de ladrillo</h2>
           <p class="section-sub">Ejecutamos cada sistema según proyecto, con el mismo equipo de principio a fin.</p>
         </header>
 
         <div class="brick-grid">
           <article class="brick-card on-scroll">
-            <div class="brick-art"><img src="img/ladrillos/hueco.svg" alt="Dibujo de ladrillo hueco convencional" loading="lazy"></div>
+            <div class="brick-art"><span class="drop"><img src="img/ladrillos/hueco.svg" alt="Dibujo de ladrillo hueco convencional" loading="lazy"></span></div>
             <div class="brick-body">
               <span class="brick-num">01</span>
               <h3>Ladrillo hueco convencional</h3>
@@ -86,7 +96,7 @@
             </div>
           </article>
           <article class="brick-card on-scroll">
-            <div class="brick-art"><img src="img/ladrillos/panal.svg" alt="Dibujo de ladrillo de panal" loading="lazy"></div>
+            <div class="brick-art"><span class="drop"><img src="img/ladrillos/panal.svg" alt="Dibujo de ladrillo de panal" loading="lazy"></span></div>
             <div class="brick-body">
               <span class="brick-num">02</span>
               <h3>Ladrillo de panal</h3>
@@ -95,7 +105,7 @@
             </div>
           </article>
           <article class="brick-card on-scroll">
-            <div class="brick-art"><img src="img/ladrillos/termo.svg" alt="Dibujo de bloque termoarcilla" loading="lazy"></div>
+            <div class="brick-art"><span class="drop"><img src="img/ladrillos/termo.svg" alt="Dibujo de bloque termoarcilla" loading="lazy"></span></div>
             <div class="brick-body">
               <span class="brick-num">03</span>
               <h3>Bloque termoarcilla</h3>
@@ -104,7 +114,7 @@
             </div>
           </article>
           <article class="brick-card on-scroll">
-            <div class="brick-art"><img src="img/ladrillos/hormigon.svg" alt="Dibujo de bloque de hormigón" loading="lazy"></div>
+            <div class="brick-art"><span class="drop"><img src="img/ladrillos/hormigon.svg" alt="Dibujo de bloque de hormigón" loading="lazy"></span></div>
             <div class="brick-body">
               <span class="brick-num">04</span>
               <h3>Bloque de hormigón</h3>
@@ -121,7 +131,7 @@
   <footer class="footer" id="contacto">
     <div class="container">
       <div class="footer-cta on-scroll">
-        <h2>¿Tienes obra? <span class="accent">Hablemos.</span></h2>
+        <h2 class="build">¿Tienes obra? <span class="accent">Hablemos.</span></h2>
         <p>Cuéntanos qué necesitas y te pasamos presupuesto por m² sin compromiso.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://wa.me/34638666270?text=Hola%2C%20me%20gustar%C3%ADa%20pedir%20presupuesto%20para%20una%20obra." target="_blank" rel="noopener">Escribir por WhatsApp</a>
@@ -179,6 +189,69 @@
     document.querySelectorAll('.on-scroll').forEach((el, i) => {
       el.style.transitionDelay = (el.classList.contains('brick-card') ? (i % 2) * 0.12 : 0) + 's';
       io.observe(el);
+    });
+
+
+    // ---------- 1) Franja: avanza sola y se acelera / cambia de sentido con el scroll ----------
+    const track = document.getElementById('marquee');
+    if (track) {
+      let x = 0, lastY = window.scrollY, vel = 0;
+      const tick = () => {
+        const y = window.scrollY, dy = y - lastY; lastY = y;
+        vel += (dy - vel) * 0.15;                       // suaviza la velocidad del scroll
+        const speed = reduce ? 0 : 0.6 + vel * 0.9;      // deriva + empuje del scroll
+        const half = track.scrollWidth / 2;
+        x -= speed;
+        if (x <= -half) x += half;
+        if (x > 0) x -= half;
+        track.style.transform = `translate3d(${x}px,0,0)`;
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+
+    // ---------- 2) Ladrillos: caen al llegar y giran levemente al seguir bajando ----------
+    const arts = document.querySelectorAll('.brick-art');
+    const dropIO = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('dropped'); dropIO.unobserve(e.target); }
+    }), { threshold: 0.45 });
+    arts.forEach(a => dropIO.observe(a));
+    if (!reduce) {
+      const tilt = () => {
+        const vh = window.innerHeight;
+        arts.forEach(a => {
+          const r = a.getBoundingClientRect();
+          const p = (r.top + r.height / 2) / vh;           // 0 arriba · 1 abajo
+          if (p > -0.2 && p < 1.2) a.style.setProperty('--tilt', ((0.5 - p) * 10).toFixed(2) + 'deg');
+        });
+      };
+      window.addEventListener('scroll', () => requestAnimationFrame(tilt), { passive: true });
+      tilt();
+    }
+
+    // ---------- 3) Titulares que se construyen palabra a palabra ----------
+    document.querySelectorAll('h2.build').forEach(h2 => {
+      let i = 0;
+      const wrap = node => {
+        [...node.childNodes].forEach(n => {
+          if (n.nodeType === 3) {
+            const frag = document.createDocumentFragment();
+            n.textContent.split(/(\s+)/).forEach(part => {
+              if (!part) return;
+              if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+              const w = document.createElement('span'); w.className = 'w';
+              const wi = document.createElement('span'); wi.className = 'wi';
+              wi.style.transitionDelay = (i++ * 0.09) + 's';
+              wi.textContent = part; w.appendChild(wi); frag.appendChild(w);
+            });
+            n.replaceWith(frag);
+          } else if (n.nodeType === 1) wrap(n);
+        });
+      };
+      wrap(h2);
+      new IntersectionObserver((es, o) => es.forEach(e => {
+        if (e.isIntersecting) { h2.classList.add('built'); o.disconnect(); }
+      }), { threshold: 0.4 }).observe(h2);
     });
 
     // Foto de portada con efecto parallax suave

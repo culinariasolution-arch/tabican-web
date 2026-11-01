@@ -295,6 +295,65 @@ a { color: inherit; text-decoration: none; }
 .footer-grid a:hover { color: #fff; text-decoration: underline; }
 .footer-legal { margin: 56px 0 0; font-size: 13px; color: rgba(255, 255, 255, .45); }
 
+/* ---------- 1) Franja en movimiento ---------- */
+.marquee-wrap { position: relative; z-index: 2; overflow: hidden; padding: 30px 0; background: linear-gradient(#28282b 50%, var(--bg-soft) 50%); }
+.marquee {
+  position: relative;
+  z-index: 2;
+  margin: -1px 0;
+  padding: 26px 0;
+  background: var(--ink);
+  color: var(--bg);
+  overflow: hidden;
+  transform: rotate(-2deg) scale(1.04);   /* misma inclinación que el logo */
+  border-top: 4px solid var(--red);
+  border-bottom: 4px solid var(--red);
+}
+.marquee-track { display: flex; width: max-content; will-change: transform; }
+.marquee-group { display: flex; align-items: center; flex-shrink: 0; }
+.marquee span {
+  font-size: clamp(34px, 6vw, 80px);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+  padding: 0 .35em;
+}
+.marquee i {                               /* separador: un ladrillo naranja */
+  display: inline-block;
+  width: .9em; height: .42em;
+  font-size: clamp(34px, 6vw, 80px);
+  background: var(--red);
+  border-radius: 3px;
+  transform: skewY(-12deg);
+}
+.services { position: relative; z-index: 1; }
+
+/* ---------- 2) Ladrillos que caen y encajan ---------- */
+.brick-art .drop { display: block; width: 100%; height: 100%; opacity: 0; transform: translateY(-140px) rotate(-10deg); }
+.brick-art.dropped .drop { animation: brickDrop .9s cubic-bezier(.3, 0, .3, 1) forwards; }
+@keyframes brickDrop {
+  0%   { opacity: 0; transform: translateY(-140px) rotate(-10deg); }
+  55%  { opacity: 1; transform: translateY(10px) rotate(2deg); }
+  72%  { transform: translateY(-14px) rotate(-1deg); }
+  86%  { transform: translateY(3px) rotate(0); }
+  100% { opacity: 1; transform: none; }
+}
+.brick-art img { transform: rotate(var(--tilt, 0deg)); transition: transform .5s cubic-bezier(.2, .8, .2, 1); }
+.brick-card:hover .brick-art img { transform: translateY(-6px) rotate(calc(var(--tilt, 0deg) - 2deg)) scale(1.03); }
+
+/* ---------- 3) Titulares que se construyen ---------- */
+h2.build .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
+h2.build .wi { display: inline-block; transform: translateY(105%); transition: transform .7s cubic-bezier(.2, .8, .2, 1); }
+h2.build.built .wi { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .brick-art .drop { opacity: 1; transform: none; }
+  .brick-art.dropped .drop { animation: none; }
+  h2.build .wi { transform: none; transition: none; }
+}
+
 /* ---------- Móvil ---------- */
 @media (max-width: 900px) {
   .photo-slot { aspect-ratio: 4 / 3; }
@@ -320,6 +379,8 @@ a { color: inherit; text-decoration: none; }
   .hero-content { padding-top: 48px; padding-bottom: 36px; }
   .hero-actions .btn { flex: 1 1 100%; }
   .services { padding: 72px 0; }
+  .marquee { padding: 16px 0; transform: rotate(-3deg) scale(1.08); }
+  .marquee-wrap { padding: 22px 0; }
   .footer { padding: 72px 0 30px; }
   .footer-cta { margin-bottom: 56px; }
   .footer-cta p { font-size: 17px; }
