@@ -259,7 +259,7 @@ a { color: inherit; text-decoration: none; }
 .brick-body { padding: 28px 30px 32px; }
 .brick-num { font-size: 13px; font-weight: 800; color: var(--red); letter-spacing: .1em; }
 .brick-body h3 { margin: 6px 0 10px; font-size: 25px; letter-spacing: -.015em; line-height: 1.15; }
-.brick-body p { margin: 0 0 20px; color: var(--ink-soft); font-size: 16px; }
+.brick-body p { margin: 0; color: var(--ink-soft); font-size: 16px; }
 .tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .tags li {
   font-size: 13px;
@@ -369,6 +369,7 @@ h2.build.built .wi { transform: none; }
 .obra-info h3 { margin: 8px 0 6px; font-size: 28px; line-height: 1.15; letter-spacing: -.02em; }
 .obra-lugar { margin: 0 0 18px; font-weight: 700; color: var(--ink); }
 .obra-info p { color: var(--ink-soft); margin: 0 0 22px; }
+.obra-info p:last-child { margin-bottom: 0; }
 .obra-galeria {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
