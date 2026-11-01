@@ -405,6 +405,24 @@ h2.build.built .wi { transform: none; }
 .lb-next { right: 14px; top: 50%; transform: translateY(-50%); }
 .lb-cap { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; color: rgba(255,255,255,.8); font-size: 14px; margin: 0; padding: 0 20px; }
 
+/* ---------- En ejecución ---------- */
+.works-live { background: var(--bg-soft); padding-bottom: 80px; }
+.live-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--red);
+}
+.live-badge i { width: 10px; height: 10px; border-radius: 50%; background: var(--red); position: relative; }
+.live-badge i::after {
+  content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--red);
+  animation: livePulse 1.8s ease-out infinite;
+}
+@keyframes livePulse { from { transform: scale(1); opacity: .7; } to { transform: scale(2.8); opacity: 0; } }
+.galeria-live { grid-template-columns: 1fr 1fr; }
+.galeria-live .obra-foto { aspect-ratio: 4 / 3; }
+.galeria-live .foto-proyecto { grid-column: 1 / -1; aspect-ratio: 1420 / 860; background: #fff; border: 1px solid var(--line); }
+.galeria-live .foto-proyecto img { object-fit: contain; }
+.galeria-live .foto-proyecto:hover img { transform: scale(1.02); }
+
 /* ---------- Móvil ---------- */
 @media (max-width: 900px) {
   .photo-slot { aspect-ratio: 4 / 3; }
@@ -441,6 +459,7 @@ h2.build.built .wi { transform: none; }
   .obra-galeria::-webkit-scrollbar { display: none; }
   .obra-foto, .obra-foto.is-main { flex: 0 0 78%; aspect-ratio: 4 / 5; scroll-snap-align: center; }
   .lb-prev, .lb-next { display: none; }
+  .galeria-live .obra-foto, .galeria-live .foto-proyecto { flex: 0 0 88%; aspect-ratio: 4 / 3; }
   .marquee { padding: 16px 0; transform: rotate(-3deg) scale(1.08); }
   .marquee-wrap { padding: 22px 0; margin-bottom: 36px; }
   .footer { padding: 72px 0 30px; }
