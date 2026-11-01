@@ -23,6 +23,7 @@
       <nav class="nav" aria-label="Principal">
         <div class="nav-links">
           <a href="#servicios">Servicios</a>
+          <a href="#obras">Obras</a>
           <a href="#contacto">Contacto</a>
         </div>
         <a href="#contacto" class="btn btn-primary btn-sm">Pedir presupuesto</a>
@@ -127,6 +128,47 @@
         </div>
       </div>
     </section>
+
+    <!-- ===================== OBRAS ===================== -->
+    <section class="works" id="obras">
+      <div class="container">
+        <header class="section-head on-scroll">
+          <p class="section-kicker">Obras</p>
+          <h2 class="build">Trabajo real, en obra</h2>
+          <p class="section-sub">Algunos de los trabajos que hemos ejecutado en Alicante, Murcia y Valencia.</p>
+        </header>
+
+        <article class="obra on-scroll">
+          <div class="obra-info">
+            <span class="obra-num">Obra 01</span>
+            <h3>Forjado sanitario para vivienda unifamiliar</h3>
+            <p class="obra-lugar">Elda · Alicante</p>
+            <p>Ejecución completa del forjado sanitario con muros de bloque de hormigón, coronados con bloque en U armado y hormigonado para formar el zuncho perimetral.</p>
+            <ul class="tags"><li>Bloque de hormigón</li><li>Bloque en U</li><li>Zuncho hormigonado</li></ul>
+          </div>
+          <div class="obra-galeria">
+              <button class="obra-foto is-main" data-full="img/obras/elda/02-levantando.webp" aria-label="Ampliar: Muros de bloque de hormigón en ejecución">
+                <img src="img/obras/elda/02-levantando-s.webp" alt="Muros de bloque de hormigón en ejecución" loading="lazy" width="540" height="675">
+              </button>
+              <button class="obra-foto" data-full="img/obras/elda/05-coronacion.webp" aria-label="Ampliar: Muros coronados con bloque en U y armadura">
+                <img src="img/obras/elda/05-coronacion-s.webp" alt="Muros coronados con bloque en U y armadura" loading="lazy" width="540" height="675">
+              </button>
+              <button class="obra-foto" data-full="img/obras/elda/06-terminado.webp" aria-label="Ampliar: Forjado sanitario terminado y coronado con zuncho hormigonado">
+                <img src="img/obras/elda/06-terminado-s.webp" alt="Forjado sanitario terminado y coronado con zuncho hormigonado" loading="lazy" width="540" height="675">
+              </button>
+              <button class="obra-foto" data-full="img/obras/elda/04-muro.webp" aria-label="Ampliar: Muro perimetral de bloque de hormigón">
+                <img src="img/obras/elda/04-muro-s.webp" alt="Muro perimetral de bloque de hormigón" loading="lazy" width="540" height="675">
+              </button>
+              <button class="obra-foto" data-full="img/obras/elda/03-hiladas.webp" aria-label="Ampliar: Hiladas de bloque de hormigón con esperas de pilares">
+                <img src="img/obras/elda/03-hiladas-s.webp" alt="Hiladas de bloque de hormigón con esperas de pilares" loading="lazy" width="540" height="675">
+              </button>
+              <button class="obra-foto" data-full="img/obras/elda/01-replanteo.webp" aria-label="Ampliar: Replanteo y arranque de pilares del forjado sanitario">
+                <img src="img/obras/elda/01-replanteo-s.webp" alt="Replanteo y arranque de pilares del forjado sanitario" loading="lazy" width="540" height="675">
+              </button>
+          </div>
+        </article>
+      </div>
+    </section>
   </main>
 
   <!-- ===================== CONTACTO / PIE ===================== -->
@@ -155,6 +197,15 @@
       <p class="footer-legal">© 2026 Tabian · Tabiquería y obra</p>
     </div>
   </footer>
+
+  <!-- Visor de fotos -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lb-btn lb-close" aria-label="Cerrar">×</button>
+    <button class="lb-btn lb-prev" aria-label="Anterior">‹</button>
+    <img alt="">
+    <button class="lb-btn lb-next" aria-label="Siguiente">›</button>
+    <p class="lb-cap"></p>
+  </div>
 
   <script>
     // Línea bajo la cabecera al hacer scroll
@@ -255,6 +306,44 @@
         if (e.isIntersecting) { h2.classList.add('built'); o.disconnect(); }
       }), { threshold: 0.4 }).observe(h2);
     });
+
+
+    // ---------- Visor de fotos de obras ----------
+    (() => {
+      const lb = document.getElementById('lightbox');
+      const img = lb.querySelector('img'), cap = lb.querySelector('.lb-cap');
+      let list = [], idx = 0;
+      const show = i => {
+        idx = (i + list.length) % list.length;
+        const b = list[idx];
+        img.src = b.dataset.full; img.alt = b.querySelector('img').alt; cap.textContent = img.alt;
+      };
+      document.querySelectorAll('.obra-galeria').forEach(g => {
+        const btns = [...g.querySelectorAll('.obra-foto')];
+        btns.forEach((b, i) => b.addEventListener('click', () => {
+          list = btns; show(i); lb.hidden = false; document.body.style.overflow = 'hidden';
+        }));
+      });
+      const close = () => { lb.hidden = true; document.body.style.overflow = ''; };
+      lb.querySelector('.lb-close').onclick = close;
+      lb.querySelector('.lb-prev').onclick = e => { e.stopPropagation(); show(idx - 1); };
+      lb.querySelector('.lb-next').onclick = e => { e.stopPropagation(); show(idx + 1); };
+      lb.addEventListener('click', e => { if (e.target === lb) close(); });
+      document.addEventListener('keydown', e => {
+        if (lb.hidden) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') show(idx - 1);
+        if (e.key === 'ArrowRight') show(idx + 1);
+      });
+      let x0 = null;
+      lb.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+      lb.addEventListener('touchend', e => {
+        if (x0 === null) return;
+        const dx = e.changedTouches[0].clientX - x0;
+        if (Math.abs(dx) > 40) show(idx + (dx < 0 ? 1 : -1));
+        x0 = null;
+      });
+    })();
 
     // Foto de portada con efecto parallax suave
     const bg = document.querySelector('.hero-bg img');
