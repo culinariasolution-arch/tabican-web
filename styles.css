@@ -416,6 +416,10 @@ h2.build.built .wi { transform: none; }
 /* Galería de 4 fotos: principal alta y 3 a la derecha */
 .galeria-4 .obra-foto.is-main { grid-row: span 3; }
 
+/* Galería de 1 foto */
+.galeria-1 { grid-template-columns: 1fr; max-width: 480px; }
+.galeria-1 .obra-foto { aspect-ratio: 560 / 650; }
+
 /* ---------- En ejecución ---------- */
 .works-live { background: var(--bg-soft); padding-bottom: 80px; }
 .live-badge {
@@ -472,6 +476,7 @@ h2.build.built .wi { transform: none; }
   .lb-prev, .lb-next { display: none; }
   .galeria-5 .obra-foto:last-child { aspect-ratio: 4 / 5; }
   .galeria-5 .obra-foto:last-child img { position: static; }
+  .galeria-1 .obra-foto { flex: 0 0 100%; }
   .galeria-2 .obra-foto, .galeria-live .obra-foto, .galeria-live .foto-proyecto { flex: 0 0 88%; aspect-ratio: 4 / 3; }
   .marquee { padding: 16px 0; transform: rotate(-3deg) scale(1.08); }
   .marquee-wrap { padding: 22px 0; margin-bottom: 36px; }
