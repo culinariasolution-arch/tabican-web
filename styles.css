@@ -405,6 +405,10 @@ h2.build.built .wi { transform: none; }
 .lb-next { right: 14px; top: 50%; transform: translateY(-50%); }
 .lb-cap { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; color: rgba(255,255,255,.8); font-size: 14px; margin: 0; padding: 0 20px; }
 
+/* Galería de 2 fotos */
+.galeria-2 { grid-template-columns: 1fr 1fr; }
+.galeria-2 .obra-foto { aspect-ratio: 4 / 3; }
+
 /* ---------- En ejecución ---------- */
 .works-live { background: var(--bg-soft); padding-bottom: 80px; }
 .live-badge {
@@ -459,7 +463,7 @@ h2.build.built .wi { transform: none; }
   .obra-galeria::-webkit-scrollbar { display: none; }
   .obra-foto, .obra-foto.is-main { flex: 0 0 78%; aspect-ratio: 4 / 5; scroll-snap-align: center; }
   .lb-prev, .lb-next { display: none; }
-  .galeria-live .obra-foto, .galeria-live .foto-proyecto { flex: 0 0 88%; aspect-ratio: 4 / 3; }
+  .galeria-2 .obra-foto, .galeria-live .obra-foto, .galeria-live .foto-proyecto { flex: 0 0 88%; aspect-ratio: 4 / 3; }
   .marquee { padding: 16px 0; transform: rotate(-3deg) scale(1.08); }
   .marquee-wrap { padding: 22px 0; margin-bottom: 36px; }
   .footer { padding: 72px 0 30px; }
