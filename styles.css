@@ -409,6 +409,13 @@ h2.build.built .wi { transform: none; }
 .galeria-2 { grid-template-columns: 1fr 1fr; }
 .galeria-2 .obra-foto { aspect-ratio: 4 / 3; }
 
+/* Galería de 5 fotos: la última ocupa dos columnas */
+.galeria-5 .obra-foto:last-child { grid-column: span 2; aspect-ratio: auto; position: relative; }
+.galeria-5 .obra-foto:last-child img { position: absolute; inset: 0; }
+
+/* Galería de 4 fotos: principal alta y 3 a la derecha */
+.galeria-4 .obra-foto.is-main { grid-row: span 3; }
+
 /* ---------- En ejecución ---------- */
 .works-live { background: var(--bg-soft); padding-bottom: 80px; }
 .live-badge {
@@ -463,6 +470,8 @@ h2.build.built .wi { transform: none; }
   .obra-galeria::-webkit-scrollbar { display: none; }
   .obra-foto, .obra-foto.is-main { flex: 0 0 78%; aspect-ratio: 4 / 5; scroll-snap-align: center; }
   .lb-prev, .lb-next { display: none; }
+  .galeria-5 .obra-foto:last-child { aspect-ratio: 4 / 5; }
+  .galeria-5 .obra-foto:last-child img { position: static; }
   .galeria-2 .obra-foto, .galeria-live .obra-foto, .galeria-live .foto-proyecto { flex: 0 0 88%; aspect-ratio: 4 / 3; }
   .marquee { padding: 16px 0; transform: rotate(-3deg) scale(1.08); }
   .marquee-wrap { padding: 22px 0; margin-bottom: 36px; }
