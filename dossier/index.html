@@ -60,29 +60,41 @@
     .num b { color: var(--red); }
     .footlogo { position: absolute; bottom: 9mm; left: 18mm; height: 9mm; opacity: .9; }
 
-    /* ---------- Portada ---------- */
-    .cover { background: var(--ink); color: var(--off); }
-    .cover .photo { position: absolute; inset: 0 0 auto 0; height: 205mm; }
-    .cover .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; }
-    .cover .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(28,28,31,.35) 0%, rgba(28,28,31,0) 35%); }
+    /* ---------- Portada (igual que la portada de la web) ---------- */
+    .cover { background: #1c1c1f; color: #fff; }
+    .cover .photo { position: absolute; inset: 0; }
+    .cover .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; transform: scale(1.08); }
+    .cover .photo::after {
+      content: ""; position: absolute; inset: 0;
+      background:
+        linear-gradient(90deg, rgba(28,28,31,.92) 0%, rgba(28,28,31,.72) 45%, rgba(28,28,31,.25) 100%),
+        linear-gradient(0deg, rgba(28,28,31,.85) 0%, transparent 40%);
+    }
     .cover .band {
-      position: absolute; left: 0; right: 0; top: 0; height: 52mm; background: var(--off);
-      clip-path: polygon(0 0, 100% 0, 100% 62%, 0 100%);
+      position: absolute; left: 0; right: 0; top: 0; height: 40mm;
+      background: rgba(249,249,249,.82);
+      clip-path: polygon(0 0, 100% 0, 100% 63%, 0 100%);
     }
-    .cover .band::after {
-      content: ""; position: absolute; inset: 0; background: var(--red);
-      clip-path: polygon(0 97%, 100% 59%, 100% 62%, 0 100%);
+    .cover .logo { position: absolute; top: 9mm; left: 18mm; height: 22mm; }
+    .cover .content { position: absolute; left: 18mm; right: 18mm; bottom: 30mm; }
+    .cover .eyebrow {
+      display: flex; flex-direction: column; gap: 2mm; margin: 0 0 9mm; padding-left: 5mm;
+      border-left: 1mm solid var(--red);
+      font-size: 11pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; line-height: 1.3;
     }
-    .cover .logo { position: absolute; top: 12mm; left: 18mm; height: 26mm; }
-    .cover .bottom {
-      position: absolute; left: 0; right: 0; bottom: 0; height: 118mm; background: var(--ink);
-      clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 100%);
-      padding: 34mm 18mm 0;
-    }
-    .cover h1 { margin: 0; font-size: 36pt; line-height: 1.02; letter-spacing: -.03em; font-weight: 800; }
+    .cover .eyebrow span:last-child { color: var(--red); }
+    .cover h1 { margin: 0 0 7mm; font-size: 40pt; line-height: 1.02; letter-spacing: -.03em; font-weight: 800; }
     .cover h1 span { color: var(--red); }
-    .cover .zones { margin: 7mm 0 0; font-size: 11pt; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(249,249,249,.75); }
-    .cover .tagdoc { position: absolute; right: 18mm; bottom: 12mm; font-size: 9pt; letter-spacing: .18em; text-transform: uppercase; color: rgba(249,249,249,.5); }
+    .cover .lead2 { margin: 0; font-size: 13pt; line-height: 1.5; color: rgba(255,255,255,.82); max-width: 135mm; }
+    .cover .stats-bar {
+      position: absolute; left: 0; right: 0; bottom: 0; height: 22mm;
+      border-top: 1px solid rgba(255,255,255,.16); background: rgba(28,28,31,.55);
+      display: grid; grid-template-columns: repeat(4, 1fr); padding: 0 18mm; align-items: center;
+    }
+    .cover .stats-bar div { border-left: 1px solid rgba(255,255,255,.16); padding-left: 5mm; }
+    .cover .stats-bar div:first-child { border-left: 0; padding-left: 0; }
+    .cover .stats-bar b { display: block; font-size: 17pt; font-weight: 800; line-height: 1.1; }
+    .cover .stats-bar span { font-size: 8.5pt; color: rgba(255,255,255,.7); }
 
     /* ---------- Quiénes somos ---------- */
     .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; margin-top: 14mm; }
@@ -181,11 +193,17 @@
     <div class="photo"><img src="img/portada.jpg" alt="Tabique de ladrillo en obra"></div>
     <div class="band"></div>
     <img class="logo" src="../img/logo2-negro.png" alt="Tabian">
-    <div class="bottom">
+    <div class="content">
+      <p class="eyebrow"><span>Subcontrata de tabiquería</span><span>Alicante · Murcia · Valencia</span></p>
       <h1>Tabiquería <span>de ladrillo</span> para promotoras y constructoras</h1>
-      <p class="zones">Alicante · Murcia · Valencia</p>
+      <p class="lead2">Tabiquería interior y cerramientos con equipo propio. Más de 10 años en obra y capacidad disponible para nuevos proyectos.</p>
     </div>
-    <p class="tagdoc">Dossier de empresa</p>
+    <div class="stats-bar">
+      <div><b>10+</b><span>años de oficio</span></div>
+      <div><b>3</b><span>provincias</span></div>
+      <div><b>100%</b><span>equipo propio</span></div>
+      <div><b>m²</b><span>presupuesto cerrado</span></div>
+    </div>
   </section>
 
   <!-- 2 · QUIÉNES SOMOS -->
