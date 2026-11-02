@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Antonio Galdón · Tabian</title>
+  <meta name="description" content="Antonio Galdón, responsable de obra en Tabian. Tabiquería de ladrillo y cerramientos en Alicante, Murcia y Valencia.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#28282b">
+  <meta property="og:title" content="Antonio Galdón · Tabian">
+  <meta property="og:description" content="Responsable de obra · Tabiquería de ladrillo y cerramientos">
+  <meta property="og:image" content="https://tabian.es/tarjeta/og.png">
+  <meta property="og:url" content="https://tabian.es/tarjeta/">
+  <meta property="og:type" content="profile">
+  <link rel="icon" type="image/png" href="../img/favicon.png">
+  <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+  <style>
+    :root {
+      --ink: #28282b;
+      --ink-2: #1c1c1f;
+      --off: #f9f9f9;
+      --muted: rgba(249, 249, 249, .68);
+      --line: rgba(249, 249, 249, .14);
+      --red: #ff4200;
+      --red-dark: #d93700;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100svh;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--ink-2);
+      color: var(--off);
+      display: flex;
+      justify-content: center;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .card {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      min-height: 100svh;
+      background: var(--ink);
+      overflow: hidden;
+      padding: 0 24px calc(28px + env(safe-area-inset-bottom));
+    }
+    @media (min-width: 480px) {
+      body { align-items: center; padding: 32px 0; }
+      .card { min-height: 0; border-radius: 22px; box-shadow: 0 30px 80px rgba(0,0,0,.45); }
+    }
+
+    /* Cabecera: franja blanca inclinada como el logo */
+    .top {
+      position: relative;
+      margin: 0 -24px;
+      padding: calc(30px + env(safe-area-inset-top)) 24px 70px;
+      background: var(--off);
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 44px), 0 100%);
+    }
+    .top::after {
+      content: "";
+      position: absolute; left: 0; right: 0; bottom: 0; height: 100%;
+      background: var(--red);
+      clip-path: polygon(0 calc(100% - 6px), 100% calc(100% - 50px), 100% calc(100% - 44px), 0 100%);
+    }
+    .logo { display: block; height: 74px; width: auto; }
+
+    .who { margin-top: 26px; }
+    .who h1 {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1.05;
+      letter-spacing: -.025em;
+      font-weight: 800;
+    }
+    .role {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin: 12px 0 0;
+      font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--red);
+    }
+    .role::before { content: ""; width: 22px; height: 3px; background: var(--red); border-radius: 2px; }
+    .tagline { margin: 14px 0 0; color: var(--muted); font-size: 15.5px; line-height: 1.5; }
+
+    /* Botones */
+    .actions { display: grid; gap: 12px; margin-top: 30px; }
+    .btn {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: rgba(249, 249, 249, .06);
+      border: 1px solid var(--line);
+      font-weight: 600; font-size: 16px;
+      transition: transform .15s ease, background .2s, border-color .2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn:active { transform: scale(.98); }
+    .btn:hover { background: rgba(249, 249, 249, .1); border-color: rgba(249,249,249,.25); }
+    .btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .btn .sub { display: block; font-weight: 500; font-size: 13.5px; color: var(--muted); margin-top: 2px; }
+    .btn .txt { flex: 1; min-width: 0; }
+    .btn .arrow { opacity: .45; width: 18px; height: 18px; }
+    .btn-main { background: var(--red); border-color: var(--red); color: #fff; }
+    .btn-main .sub { color: rgba(255,255,255,.82); }
+    .btn-main:hover { background: var(--red-dark); border-color: var(--red-dark); }
+    .btn-save { background: var(--off); color: var(--ink); border-color: var(--off); justify-content: center; }
+    .btn-save:hover { background: #fff; }
+
+    .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .duo .btn { flex-direction: column; align-items: flex-start; gap: 10px; }
+
+    /* QR para enseñar */
+    .qr {
+      margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--line);
+      display: flex; align-items: center; gap: 18px;
+    }
+    .qr img { width: 108px; height: 108px; border-radius: 10px; background: #fff; padding: 6px; }
+    .qr p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.5; }
+    .qr strong { color: var(--off); display: block; font-size: 15px; margin-bottom: 4px; }
+
+    .share {
+      margin-top: 22px; width: 100%;
+      font: inherit; font-weight: 600; font-size: 15px; color: var(--off);
+      background: none; border: 1px dashed var(--line); border-radius: 14px; padding: 14px; cursor: pointer;
+    }
+    .foot { margin-top: 22px; text-align: center; font-size: 12.5px; color: rgba(249,249,249,.4); }
+    .foot a { color: rgba(249,249,249,.6); }
+
+    /* Entrada */
+    .in { opacity: 0; transform: translateY(16px); animation: in .7s cubic-bezier(.2,.7,.2,1) forwards; }
+    @keyframes in { to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .in { animation: none; opacity: 1; transform: none; } }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <header class="top">
+      <img class="logo in" src="../img/logo2-negro.webp" alt="Tabian" width="640" height="372">
+    </header>
+
+    <section class="who">
+      <h1 class="in" style="animation-delay:.08s">Antonio Galdón</h1>
+      <p class="role in" style="animation-delay:.14s">Responsable de obra</p>
+      <p class="tagline in" style="animation-delay:.2s">Tabiquería de ladrillo y cerramientos para promotoras y constructoras · Alicante, Murcia y Valencia.</p>
+    </section>
+
+    <nav class="actions">
+      <a class="btn btn-main in" style="animation-delay:.26s" href="tel:+34638666270">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+        <span class="txt">Llamar<span class="sub">638 666 270</span></span>
+      </a>
+
+      <div class="duo">
+        <a class="btn in" style="animation-delay:.32s" href="https://wa.me/34638666270?text=Hola%20Antonio%2C%20te%20escribo%20desde%20tu%20tarjeta%20de%20Tabian." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>
+          <span class="txt">WhatsApp<span class="sub">Escríbeme</span></span>
+        </a>
+        <a class="btn in" style="animation-delay:.36s" href="mailto:antoniogaldon@tabian.es">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          <span class="txt">Correo<span class="sub">antoniogaldon@tabian.es</span></span>
+        </a>
+      </div>
+
+      <a class="btn in" style="animation-delay:.42s" href="https://tabian.es/#obras">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="8" height="5" rx="1"/><rect x="13" y="4" width="8" height="5" rx="1"/><rect x="3" y="11" width="4" height="5" rx="1"/><rect x="9" y="11" width="8" height="5" rx="1"/><rect x="19" y="11" width="2" height="5" rx="1"/><rect x="3" y="18" width="8" height="2" rx="1"/><rect x="13" y="18" width="8" height="2" rx="1"/></svg>
+        <span class="txt">Ver obras y servicios<span class="sub">tabian.es</span></span>
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+      </a>
+
+      <a class="btn btn-save in" style="animation-delay:.48s" href="antonio-galdon-tabian.vcf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+        Guardar contacto
+      </a>
+    </nav>
+
+    <section class="qr in" style="animation-delay:.54s">
+      <img src="qr.svg" alt="Código QR de la tarjeta de Antonio Galdón" width="108" height="108">
+      <p><strong>Escanea para guardar</strong>Enséñalo en obra y la otra persona tendrá la tarjeta en su móvil.</p>
+    </section>
+
+    <button class="share in" style="animation-delay:.6s" id="share" hidden>Compartir esta tarjeta</button>
+
+    <p class="foot"><a href="https://tabian.es">tabian.es</a> · Tabiquería · Obra</p>
+  </main>
+
+  <script>
+    const btn = document.getElementById('share');
+    if (navigator.share) {
+      btn.hidden = false;
+      btn.addEventListener('click', () => {
+        navigator.share({
+          title: 'Antonio Galdón · Tabian',
+          text: 'Antonio Galdón, responsable de obra en Tabian',
+          url: 'https://tabian.es/tarjeta/'
+        }).catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
