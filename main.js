@@ -1,5 +1,5 @@
 /* ==========================================================
-   TABIAN · MAQUETA — efectos
+   TABIAN · efectos de la web
    Base: lo mismo que la web actual (funciona sin GSAP).
    Si GSAP carga, <html> lleva la clase "fx" y se activan:
      1) Portada: el muro se levanta hilada a hilada y el titular entra

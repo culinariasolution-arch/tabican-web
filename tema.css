@@ -1,5 +1,5 @@
 /* ==========================================================
-   TABIAN · MAQUETA "término medio"
+   TABIAN · TEMA "término medio" (nov 2026)
    Negro de obra en portada, franja, obras en curso y pie.
    Blanco limpio en servicios y obras para que luzcan las fotos.
    Naranja solo en botones y detalles.
@@ -31,14 +31,6 @@
 }
 
 body { background: var(--white); }
-
-/* Aviso de maqueta */
-.maqueta-flag {
-  position: fixed; z-index: 200; left: 12px; bottom: 12px;
-  padding: 8px 12px; border-radius: 6px;
-  background: var(--orange); color: #fff; font-size: 12px; font-weight: 700;
-  box-shadow: 0 6px 20px rgba(0,0,0,.25);
-}
 
 /* Foco visible con teclado */
 a:focus-visible, button:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }

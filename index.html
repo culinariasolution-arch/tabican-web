@@ -4,9 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Tabian · Tabiquería de ladrillo para promotoras y constructoras</title>
-  <meta name="description" content="Subcontrata de tabiquería de ladrillo y cerramientos en Alicante, Murcia y Valencia. Equipo propio, más de 10 años en obra y capacidad disponible para nuevos proyectos.">
+  <meta name="description" content="Subcontrata de tabiquería de ladrillo y cerramientos en Alicante, Murcia, Valencia y Albacete. Equipo propio, más de 10 años en obra y capacidad disponible para nuevos proyectos.">
   <link rel="canonical" href="https://tabian.es/">
-  <meta name="theme-color" content="#28282b">
+  <link rel="preload" href="fonts/anton.woff" as="font" type="font/woff" crossorigin>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script>
+    // Si GSAP ha cargado y no se pide movimiento reducido, activamos los efectos
+    if (window.gsap && window.ScrollTrigger && !matchMedia("(prefers-reduced-motion: reduce)").matches)
+      document.documentElement.classList.add("fx");
+  </script>
+  <meta name="theme-color" content="#0e0e0e">
   <!-- Vista previa al compartir (WhatsApp, LinkedIn, Facebook…) -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Tabian">
@@ -23,6 +31,7 @@
   <link rel="icon" type="image/png" href="img/favicon.png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="tema.css">
 </head>
 <body>
 
@@ -30,7 +39,7 @@
   <header class="header" id="header">
     <div class="container header-inner">
       <a href="#" class="logo" aria-label="Tabian, inicio">
-        <img src="img/logo2-negro.webp" alt="Tabian" width="640" height="372">
+        <img src="img/logo2-blanco.webp" alt="Tabian" width="640" height="372">
       </a>
 
       <nav class="nav" aria-label="Principal">
@@ -52,14 +61,17 @@
           <source type="image/webp" srcset="img/portada-700.webp 700w, img/portada.webp 1200w" sizes="100vw">
           <img src="img/portada.jpg" srcset="img/portada-700.jpg 700w, img/portada.jpg 1200w" sizes="100vw" alt="" fetchpriority="high">
         </picture>
+        <!-- Hiladas que se retiran de abajo arriba al cargar: el muro "se levanta" -->
+        <div class="courses"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
       </div>
 
       <div class="container hero-content">
-        <p class="eyebrow reveal">
-          <span class="eyebrow-main">Subcontrata de tabiquería</span>
-          <span class="eyebrow-zone">Alicante · Murcia · Valencia</span>
-        </p>
-        <h1 class="reveal">Tabiquería <span class="accent">de ladrillo</span> para promotoras y constructoras</h1>
+        <p class="hero-kicker reveal">Subcontrata de tabiquería en Alicante, Murcia, Valencia y Albacete</p>
+        <h1 class="hero-title" aria-label="Tabiquería de ladrillo para promotoras y constructoras">
+          <span class="ln"><span>Tabiquería</span></span>
+          <span class="ln"><span class="accent">de ladrillo</span></span>
+          <span class="ln ln-small"><span>para promotoras y constructoras</span></span>
+        </h1>
         <p class="hero-lead reveal">Tabiquería interior y cerramientos con equipo propio. Más de 10 años en obra y capacidad disponible para nuevos proyectos.</p>
         <div class="hero-actions reveal">
           <a href="#contacto" class="btn btn-primary">Pedir presupuesto</a>
@@ -67,27 +79,24 @@
         </div>
         <div class="rea-badge reveal">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg>
-          <span><b>Empresa acreditada · REA</b>Registro de Empresas Acreditadas del sector de la construcción</span>
+          <span><b>Empresa acreditada en el REA</b>Registro de Empresas Acreditadas del sector de la construcción</span>
         </div>
       </div>
-
       <div class="hero-stats">
         <div class="container stats-grid">
           <div class="stat reveal"><strong><span class="count" data-to="10">0</span>+</strong><span>años de oficio</span></div>
-          <div class="stat reveal"><strong><span class="count" data-to="3">0</span></strong><span>provincias</span></div>
+          <div class="stat reveal"><strong><span class="count" data-to="4">0</span></strong><span>provincias</span></div>
           <div class="stat reveal"><strong>100%</strong><span>equipo propio</span></div>
           <div class="stat reveal"><strong>m²</strong><span>presupuesto cerrado</span></div>
         </div>
       </div>
     </section>
 
-    <!-- Próximas secciones: servicios, por qué Tabian, obras, cómo trabajamos, contacto -->
-
+    
     <!-- ===================== SERVICIOS: TIPOS DE LADRILLO ===================== -->
     <section class="services" id="servicios">
       <div class="container">
         <header class="section-head on-scroll">
-          <p class="section-kicker">Sistemas</p>
           <h2 class="build">Trabajamos todo tipo de ladrillo</h2>
           <p class="section-sub">Ejecutamos cada sistema según proyecto, con el mismo equipo de principio a fin.</p>
         </header>
@@ -97,8 +106,8 @@
     <div class="marquee-wrap" aria-hidden="true">
     <div class="marquee">
       <div class="marquee-track" id="marquee">
-        <div class="marquee-group"><span>Tabiquería</span><i aria-hidden="true"></i><span>Cerramientos</span><i aria-hidden="true"></i><span>Termoarcilla</span><i aria-hidden="true"></i><span>Bloque de hormigón</span><i aria-hidden="true"></i><span>Ladrillo de panal</span><i aria-hidden="true"></i><span>Alicante</span><i aria-hidden="true"></i><span>Murcia</span><i aria-hidden="true"></i><span>Valencia</span><i aria-hidden="true"></i></div>
-        <div class="marquee-group"><span>Tabiquería</span><i aria-hidden="true"></i><span>Cerramientos</span><i aria-hidden="true"></i><span>Termoarcilla</span><i aria-hidden="true"></i><span>Bloque de hormigón</span><i aria-hidden="true"></i><span>Ladrillo de panal</span><i aria-hidden="true"></i><span>Alicante</span><i aria-hidden="true"></i><span>Murcia</span><i aria-hidden="true"></i><span>Valencia</span><i aria-hidden="true"></i></div>
+        <div class="marquee-group"><span>Tabiquería</span><i aria-hidden="true"></i><span>Cerramientos</span><i aria-hidden="true"></i><span>Termoarcilla</span><i aria-hidden="true"></i><span>Bloque de hormigón</span><i aria-hidden="true"></i><span>Ladrillo de panal</span><i aria-hidden="true"></i><span>Alicante</span><i aria-hidden="true"></i><span>Murcia</span><i aria-hidden="true"></i><span>Valencia</span><i aria-hidden="true"></i><span>Albacete</span><i aria-hidden="true"></i></div>
+        <div class="marquee-group"><span>Tabiquería</span><i aria-hidden="true"></i><span>Cerramientos</span><i aria-hidden="true"></i><span>Termoarcilla</span><i aria-hidden="true"></i><span>Bloque de hormigón</span><i aria-hidden="true"></i><span>Ladrillo de panal</span><i aria-hidden="true"></i><span>Alicante</span><i aria-hidden="true"></i><span>Murcia</span><i aria-hidden="true"></i><span>Valencia</span><i aria-hidden="true"></i><span>Albacete</span><i aria-hidden="true"></i></div>
       </div>
     </div>
     </div>
@@ -108,7 +117,6 @@
           <article class="brick-card on-scroll">
             <div class="brick-art"><span class="drop"><img src="img/ladrillos/hueco.svg" alt="Dibujo de ladrillo hueco convencional" loading="lazy"></span></div>
             <div class="brick-body">
-              <span class="brick-num">01</span>
               <h3>Ladrillo hueco convencional</h3>
               <p>Tabiquería interior y distribución de viviendas, trasdosados y divisiones. El sistema más versátil, con buena planeidad para guarnecer o alicatar.</p>
             </div>
@@ -116,7 +124,6 @@
           <article class="brick-card on-scroll">
             <div class="brick-art"><span class="drop"><img src="img/ladrillos/panal.svg" alt="Dibujo de ladrillo de panal" loading="lazy"></span></div>
             <div class="brick-body">
-              <span class="brick-num">02</span>
               <h3>Ladrillo de panal</h3>
               <p>Para muros que necesitan más resistencia y aislamiento acústico: medianeras, separación entre viviendas y cerramientos.</p>
             </div>
@@ -124,7 +131,6 @@
           <article class="brick-card on-scroll">
             <div class="brick-art"><span class="drop"><img src="img/ladrillos/termo.svg" alt="Dibujo de bloque termoarcilla" loading="lazy"></span></div>
             <div class="brick-body">
-              <span class="brick-num">03</span>
               <h3>Bloque termoarcilla</h3>
               <p>Bloque cerámico de gran formato para muros de carga y fachadas de una sola hoja, con buen aislamiento térmico y acústico.</p>
             </div>
@@ -132,7 +138,6 @@
           <article class="brick-card on-scroll">
             <div class="brick-art"><span class="drop"><img src="img/ladrillos/hormigon.svg" alt="Dibujo de bloque de hormigón" loading="lazy"></span></div>
             <div class="brick-body">
-              <span class="brick-num">04</span>
               <h3>Bloque de hormigón</h3>
               <p>Muros resistentes para naves, garajes, vallados, muros de contención y vasos de piscina.</p>
             </div>
@@ -145,16 +150,15 @@
     <section class="works works-live" id="en-ejecucion">
       <div class="container">
         <header class="section-head on-scroll">
-          <p class="section-kicker">En ejecución</p>
+          <span class="live-badge"><i></i>En ejecución</span>
           <h2 class="build">Ahora mismo en obra</h2>
           <p class="section-sub">Proyectos que estamos ejecutando en estos momentos.</p>
         </header>
 
         <article class="obra on-scroll">
           <div class="obra-info">
-            <span class="live-badge"><i></i>En curso</span>
             <h3>Cerramiento de 11 viviendas unifamiliares</h3>
-            <p class="obra-lugar">Mutxamel · Alicante</p>
+            <p class="obra-lugar">Mutxamel, Alicante</p>
             <p>Ejecución de los cerramientos de ladrillo de una promoción de 11 viviendas unifamiliares adosadas, repartidas en tres bloques.</p>
           </div>
           <div class="obra-galeria galeria-live">
@@ -178,9 +182,8 @@
 
         <article class="obra on-scroll">
           <div class="obra-info">
-            <span class="live-badge"><i></i>En curso</span>
             <h3>Edificio de 5 viviendas y 2 áticos</h3>
-            <p class="obra-lugar">Elda · Alicante</p>
+            <p class="obra-lugar">Elda, Alicante</p>
             <p>Ejecución de las fachadas y medianeras de ladrillo de un edificio residencial de 5 viviendas y 2 áticos.</p>
           </div>
           <div class="obra-galeria galeria-5">
@@ -208,16 +211,14 @@
     <section class="works" id="obras">
       <div class="container">
         <header class="section-head on-scroll">
-          <p class="section-kicker">Obras</p>
           <h2 class="build">Trabajo real, en obra</h2>
-          <p class="section-sub">Algunos de los trabajos que hemos ejecutado en Alicante, Murcia y Valencia.</p>
+          <p class="section-sub">Algunos de los trabajos que hemos ejecutado en Alicante, Murcia, Valencia y Albacete.</p>
         </header>
 
         <article class="obra on-scroll">
           <div class="obra-info">
-            <span class="obra-num">Obra 01</span>
             <h3>Forjado sanitario para vivienda unifamiliar</h3>
-            <p class="obra-lugar">Elda · Alicante</p>
+            <p class="obra-lugar">Elda, Alicante</p>
             <p>Ejecución completa del forjado sanitario con muros de bloque de hormigón, coronados con bloque en U armado y hormigonado para formar el zuncho perimetral.</p>
           </div>
           <div class="obra-galeria">
@@ -244,7 +245,6 @@
 
         <article class="obra on-scroll">
           <div class="obra-info">
-            <span class="obra-num">Obra 02</span>
             <h3>Medianeras de ladrillo para vivienda unifamiliar</h3>
             <p class="obra-lugar">Valencia</p>
             <p>Ejecución de las medianeras de ladrillo cerámico entre pilares, levantados a lo largo de toda la parcela junto a las edificaciones colindantes.</p>
@@ -273,7 +273,6 @@
 
         <article class="obra on-scroll">
           <div class="obra-info">
-            <span class="obra-num">Obra 03</span>
             <h3>Tabiquería interior en ampliación de chalet</h3>
             <p class="obra-lugar">Alicante</p>
             <p>Ejecución de la tabiquería interior de ladrillo cerámico en la ampliación de un chalet, incluida la planta bajo cubierta inclinada.</p>
@@ -302,7 +301,6 @@
 
         <article class="obra on-scroll">
           <div class="obra-info">
-            <span class="obra-num">Obra 04</span>
             <h3>Muro divisorio de termoarcilla</h3>
             <p class="obra-lugar">Alicante</p>
             <p>Ejecución de un muro de bloque termoarcilla para separar dos parcelas: un centro deportivo y una vivienda unifamiliar.</p>
@@ -331,7 +329,6 @@
 
         <article class="obra on-scroll">
           <div class="obra-info">
-            <span class="obra-num">Obra 05</span>
             <h3>Vaso de piscina</h3>
             <p class="obra-lugar">Albacete</p>
             <p>Construcción del vaso de una piscina con muros de ladrillo cerámico, levantados sobre la losa y listos para el revestimiento.</p>
@@ -348,7 +345,6 @@
 
         <article class="obra on-scroll">
           <div class="obra-info">
-            <span class="obra-num">Obra 06</span>
             <h3>Cambio de uso de local comercial a vivienda</h3>
             <p class="obra-lugar">Valencia</p>
             <p>Transformación de un local comercial en planta baja en vivienda: replanteo, nueva distribución interior con tabiquería de ladrillo y cerramiento de la antigua fachada del local.</p>
@@ -374,9 +370,8 @@
 
         <article class="obra on-scroll">
           <div class="obra-info">
-            <span class="obra-num">Obra 07</span>
             <h3>Cerramientos de termoarcilla para vivienda unifamiliar</h3>
-            <p class="obra-lugar">Elda · Alicante</p>
+            <p class="obra-lugar">Elda, Alicante</p>
             <p>Ejecución de los cerramientos de fachada con bloque termoarcilla entre la estructura de hormigón, en planta baja y primera, incluidos los huecos de ventanas.</p>
           </div>
           <div class="obra-galeria galeria-4">
@@ -397,9 +392,8 @@
 
         <article class="obra on-scroll">
           <div class="obra-info">
-            <span class="obra-num">Obra 08</span>
             <h3>Muro de bloque de hormigón para vivienda unifamiliar</h3>
-            <p class="obra-lugar">Elda · Alicante</p>
+            <p class="obra-lugar">Elda, Alicante</p>
             <p>Ejecución del muro de cerramiento de parcela con bloque de hormigón, incluidas las pilastras con esperas de armadura.</p>
           </div>
           <div class="obra-galeria galeria-4">
@@ -441,11 +435,11 @@
         </div>
         <div>
           <h4>Zona de trabajo</h4>
-          <p>Alicante · Murcia · Valencia</p>
+          <p>Alicante · Murcia · Valencia · Albacete</p>
           <p class="footer-rea">Empresa acreditada en el REA<br>(Registro de Empresas Acreditadas)</p>
         </div>
       </div>
-      <p class="footer-legal">© 2026 Tabian · Tabiquería y obra</p>
+      <p class="footer-legal">© 2026 Tabian, tabiquería y obra</p>
     </div>
   </footer>
 
@@ -458,150 +452,6 @@
     <p class="lb-cap"></p>
   </div>
 
-  <script>
-    // Línea bajo la cabecera al hacer scroll
-    const header = document.getElementById('header');
-    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // Entrada escalonada de los textos de portada
-    document.querySelectorAll('.hero .reveal').forEach((el, i) => {
-      el.style.transitionDelay = (0.15 + i * 0.12) + 's';
-    });
-    requestAnimationFrame(() => document.body.classList.add('loaded'));
-
-    // Contadores (10+ años, 3 provincias)
-    const counters = document.querySelectorAll('.count');
-    const runCount = el => {
-      const to = +el.dataset.to, dur = reduce ? 0 : 1400, t0 = performance.now();
-      const step = t => {
-        const p = Math.min(1, (t - t0) / (dur || 1));
-        el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
-        if (p < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    };
-    setTimeout(() => counters.forEach(runCount), 900);
-
-    // Aparición al hacer scroll
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.on-scroll').forEach((el, i) => {
-      el.style.transitionDelay = (el.classList.contains('brick-card') ? (i % 2) * 0.12 : 0) + 's';
-      io.observe(el);
-    });
-
-
-    // ---------- 1) Franja: avanza sola y se acelera / cambia de sentido con el scroll ----------
-    const track = document.getElementById('marquee');
-    if (track) {
-      let x = 0, lastY = window.scrollY, vel = 0;
-      const tick = () => {
-        const y = window.scrollY, dy = y - lastY; lastY = y;
-        vel += (dy - vel) * 0.15;                       // suaviza la velocidad del scroll
-        const speed = reduce ? 0 : 0.6 + vel * 0.9;      // deriva + empuje del scroll
-        const half = track.scrollWidth / 2;
-        x -= speed;
-        if (x <= -half) x += half;
-        if (x > 0) x -= half;
-        track.style.transform = `translate3d(${x}px,0,0)`;
-        requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-    }
-
-    // ---------- 2) Ladrillos: caen al llegar y giran levemente al seguir bajando ----------
-    const arts = document.querySelectorAll('.brick-art');
-    const dropIO = new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('dropped'); dropIO.unobserve(e.target); }
-    }), { threshold: 0.45 });
-    arts.forEach(a => dropIO.observe(a));
-    if (!reduce) {
-      const tilt = () => {
-        const vh = window.innerHeight;
-        arts.forEach(a => {
-          const r = a.getBoundingClientRect();
-          const p = (r.top + r.height / 2) / vh;           // 0 arriba · 1 abajo
-          if (p > -0.2 && p < 1.2) a.style.setProperty('--tilt', ((0.5 - p) * 10).toFixed(2) + 'deg');
-        });
-      };
-      window.addEventListener('scroll', () => requestAnimationFrame(tilt), { passive: true });
-      tilt();
-    }
-
-    // ---------- 3) Titulares que se construyen palabra a palabra ----------
-    document.querySelectorAll('h2.build').forEach(h2 => {
-      let i = 0;
-      const wrap = node => {
-        [...node.childNodes].forEach(n => {
-          if (n.nodeType === 3) {
-            const frag = document.createDocumentFragment();
-            n.textContent.split(/(\s+)/).forEach(part => {
-              if (!part) return;
-              if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
-              const w = document.createElement('span'); w.className = 'w';
-              const wi = document.createElement('span'); wi.className = 'wi';
-              wi.style.transitionDelay = (i++ * 0.09) + 's';
-              wi.textContent = part; w.appendChild(wi); frag.appendChild(w);
-            });
-            n.replaceWith(frag);
-          } else if (n.nodeType === 1) wrap(n);
-        });
-      };
-      wrap(h2);
-      new IntersectionObserver((es, o) => es.forEach(e => {
-        if (e.isIntersecting) { h2.classList.add('built'); o.disconnect(); }
-      }), { threshold: 0.4 }).observe(h2);
-    });
-
-
-    // ---------- Visor de fotos de obras ----------
-    (() => {
-      const lb = document.getElementById('lightbox');
-      const img = lb.querySelector('img'), cap = lb.querySelector('.lb-cap');
-      let list = [], idx = 0;
-      const show = i => {
-        idx = (i + list.length) % list.length;
-        const b = list[idx];
-        img.src = b.dataset.full; img.alt = b.querySelector('img').alt; cap.textContent = img.alt;
-      };
-      document.querySelectorAll('.obra-galeria').forEach(g => {
-        const btns = [...g.querySelectorAll('.obra-foto')];
-        btns.forEach((b, i) => b.addEventListener('click', () => {
-          list = btns; show(i); lb.hidden = false; document.body.style.overflow = 'hidden';
-        }));
-      });
-      const close = () => { lb.hidden = true; document.body.style.overflow = ''; };
-      lb.querySelector('.lb-close').onclick = close;
-      lb.querySelector('.lb-prev').onclick = e => { e.stopPropagation(); show(idx - 1); };
-      lb.querySelector('.lb-next').onclick = e => { e.stopPropagation(); show(idx + 1); };
-      lb.addEventListener('click', e => { if (e.target === lb) close(); });
-      document.addEventListener('keydown', e => {
-        if (lb.hidden) return;
-        if (e.key === 'Escape') close();
-        if (e.key === 'ArrowLeft') show(idx - 1);
-        if (e.key === 'ArrowRight') show(idx + 1);
-      });
-      let x0 = null;
-      lb.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
-      lb.addEventListener('touchend', e => {
-        if (x0 === null) return;
-        const dx = e.changedTouches[0].clientX - x0;
-        if (Math.abs(dx) > 40) show(idx + (dx < 0 ? 1 : -1));
-        x0 = null;
-      });
-    })();
-
-    // Foto de portada con efecto parallax suave
-    const bg = document.querySelector('.hero-bg img');
-    if (!reduce) window.addEventListener('scroll', () => {
-      bg.style.transform = `translateY(${window.scrollY * 0.25}px) scale(1.08)`;
-    }, { passive: true });
-
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
